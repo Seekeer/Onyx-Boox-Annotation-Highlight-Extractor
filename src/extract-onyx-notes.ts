@@ -1,8 +1,12 @@
-import { createReferenceNote } from "./create-reference-note";
-import { createZettelNotes } from "./create-zettel-notes";
-import { OnyxBooxExtractorSettings, ReadingNoteDetails, ReferenceNoteDetails } from "./models";
-import { parseNote } from "./parse-onyx-note";
-import { isVersion2 } from "./utils/is-version-2";
+import { createReferenceNote } from './create-reference-note';
+import { createZettelNotes } from './create-zettel-notes';
+import {
+  OnyxBooxExtractorSettings,
+  ReadingNoteDetails,
+  ReferenceNoteDetails,
+} from './models';
+import { parseNote } from './parse-onyx-note';
+import { isVersion2 } from './utils/is-version-2';
 
 const extractOnyxReadingNotesV1 = async (vault: any, settings: OnyxBooxExtractorSettings, fileContent: string) => {
 
@@ -33,7 +37,7 @@ const extractOnyxReadingNotesV1 = async (vault: any, settings: OnyxBooxExtractor
 	}
 }
 
-const extractOnyxReadingNotesV2 = async (vault: any, settings: OnyxBooxExtractorSettings, fileContent: string) => {
+export const extractOnyxReadingNotesV2 = async (vault: any, settings: OnyxBooxExtractorSettings, fileContent: string) => {
 
 	const NOTE_SEPARATOR = '-------------------';
 	const mainMetadata = fileContent.split('\n')[0];
@@ -65,7 +69,7 @@ const extractOnyxReadingNotesV2 = async (vault: any, settings: OnyxBooxExtractor
 	const referenceNoteId = await createReferenceNote(vault, settings, referenceInfo);
 	for (const readingNote of readingNotesArrayObj){
 		const noteDetails = parseNote(readingNote);
-		await createZettelNotes(vault, settings, referenceNoteId, referenceInfo, noteDetails);
+		//await createZettelNotes(vault, settings, referenceNoteId, referenceInfo, noteDetails);
 		
 	}
 }

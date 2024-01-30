@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "paths": {
+      "@/*": ["*"] // resolve all modules prefixed with `@/` from `src` directory
+    },
     "inlineSourceMap": true,
     "inlineSources": true,
     "module": "ESNext",
@@ -10,6 +13,7 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "isolatedModules": true,
+    "esModuleInterop":true,
     "lib": [
       "DOM",
       "ES5",
