@@ -1,6 +1,6 @@
-import { ReadingNoteDetails } from "./models";
-import { getStringBetween } from "./utils";
-import { isVersion2 } from "./utils/is-version-2";
+import { ReadingNoteDetails } from './models';
+import { getStringBetween } from './utils';
+import { isVersion2 } from './utils/is-version-2';
 
 export const parseNote = (readingNote: ReadingNoteDetails): ReadingNoteDetails => {
 	return (readingNote.raw && isVersion2(readingNote.raw))
@@ -35,6 +35,6 @@ const parseNoteV2 = (readingNoteObj: ReadingNoteDetails): ReadingNoteDetails => 
 		creationTime: new Date(firstNoteLine.split('|')[0].trim()),
 		originalText: readingNoteLines.join('\n').split('【Note】')[0],
 		annotation: (readingNote.split('【Note】').length > 0) ? readingNote.split('【Note】')[1]: undefined ,
-		page: Number(firstNoteLine.split('Page No.:')[1].trim()),
+		page: Number(firstNoteLine.split('Страница:')[1].trim()),
 	};
 }
